@@ -187,6 +187,31 @@ forge scaffolding.
 - **Stores are read-only at the filesystem level.** Only
   arca-daemon has write permission on store directories.
 
+## Cascade migration discipline
+
+Per Spirit record 319 (Maximum certainty, 2026-05-23), arca performs
+database migration whenever an ARCA-touched format changes. Every
+component that stores derived types in ARCA migrates its own
+database when the relevant format changes; the cascade is
+mandatory — no format-change escapes downstream migration.
+
+The migration target is the **redb index** (`index.redb` per store),
+not the stored blobs themselves; content-addressed blobs are
+immutable by hash, so they don't migrate. The cascade flows along
+the cross-schema dependency graph captured in each consumer's
+`SCHEMA_DEPENDENCIES` aggregate; when a workspace type referenced
+by arca's index changes, every consumer that pins arca-typed records
+updates its `schema_header` row and replays the relevant index
+entries through its per-component `Migration` trait impl.
+
+This composes with the continuous-runtime invariant per
+`persona/ARCHITECTURE.md` §1.6.7 — cascade work happens behind the
+selector flip; in-flight clients keep their FDs; per-consumer
+migration failure produces quarantine on the failing consumer
+while the rest of the fleet moves to the new schema.
+
+Sequenced design surface: `reports/third-designer/23-architecture-update-2026-05-23/4-arca-cascade-and-atomic-upgrade.md`.
+
 ## Cross-cutting context
 
 - Two-stores model:
