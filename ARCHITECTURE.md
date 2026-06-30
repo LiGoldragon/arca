@@ -189,11 +189,12 @@ forge scaffolding.
 
 ## Cascade migration discipline
 
-Per Spirit record 319 (Maximum certainty, 2026-05-23), arca performs
-database migration whenever an ARCA-touched format changes. Every
-component that stores derived types in ARCA migrates its own
-database when the relevant format changes; the cascade is
-mandatory — no format-change escapes downstream migration.
+Per Spirit records 319 (Maximum certainty, 2026-05-23) and archived
+intent `i1b5`, arca performs database migration whenever an
+ARCA-touched format changes. Every component that stores derived
+types in ARCA migrates its own database when the relevant format
+changes; the cascade is mandatory — no format-change escapes
+downstream migration.
 
 The migration target is the **redb index** (`index.redb` per store),
 not the stored blobs themselves; content-addressed blobs are
