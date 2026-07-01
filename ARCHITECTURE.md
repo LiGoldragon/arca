@@ -16,8 +16,7 @@ capability the same way.
 > defined shape vocabulary, so non-shape data needs somewhere else.
 > The eventual `Sema` represents all meaning, at which point this
 > distinction collapses. Today's arca is a realization step — the
-> blob plane today's stack needs. See `~/primary/ESSENCE.md`
-> §"Today and eventually — different things, different names".
+> blob plane today's stack needs. See `~/primary/ARCHITECTURE.md` §"Workspace vision and intent".
 
 ## Two pieces
 
