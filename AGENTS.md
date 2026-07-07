@@ -1,7 +1,5 @@
 # Agent instructions — arca
 
-You **MUST** read AGENTS.md at `github:ligoldragon/lore` — the workspace contract.
-
 ## Repo role
 
 Content-addressed filesystem — blake3-hashed analogue to the nix-store. **One library + one daemon**: the `arca` library is the public reader API + on-disk layout; `arca-daemon` is the privileged writer (write-only staging, multi-store, capability-token-gated).
