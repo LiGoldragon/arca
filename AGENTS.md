@@ -12,3 +12,10 @@ Skeleton-as-design today; bodies are `todo!()`.
 - `StoreReader` (public) and `StoreWriter` (arca-daemon-only) split the reader/writer authority. Writes carry a criome-signed capability token referencing a sema access-control record + target store.
 - `BundlePolicy` (in `bundle.rs`) makes determinism controls explicit — `normalise_timestamps`, `strip_build_id`, `rewrite_rpath`.
 - The skeleton **is** the design doc — modifying the interface means modifying this code (per skeleton-as-design).
+
+## Protos estate status
+
+Protos estate scope: out of scope
+Stack: not applicable
+Role: general tooling
+This is scope metadata, not a stack.
